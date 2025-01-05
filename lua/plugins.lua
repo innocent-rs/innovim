@@ -6,3 +6,7 @@ require('lazy').setup({
     icons = {},
   },
 })
+
+require('barbar').setup {
+  clickable = false,
+}

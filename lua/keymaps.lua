@@ -1,6 +1,16 @@
+local function set_keymap(mode, lhs, rhs, silent, desc)
+  if not desc or desc == '' then
+    error('Description is required for keymap:' .. lhs)
+  end
+
+  local options = { noremap = true, silent = silent, desc = desc }
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-vim.keymap.set('v', '<leader>y', '"+y', { desc = 'copy selection into buffer', noremap = true, silent = true })
+set_keymap('v', '<leader>y', '"+y', true, 'copy select into buffer')
+-- vim.keymap.set('v', '<leader>y', '"+y', { desc = 'copy selection into buffer', noremap = true, silent = true })
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -44,4 +54,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 vim.keymap.set('n', '<leader>|', ':vsplit<CR>', { desc = 'open a vertical split', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>-', ':split<CR>', { desc = 'open an horizontal split', noremap = true, silent = true })
--- vim: ts=2 sts=2 sw=2 et
