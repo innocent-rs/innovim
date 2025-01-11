@@ -191,21 +191,18 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         --
-
+        cssls = {},
+        html = {},
         nil_ls = {
           filetypes = { 'nix' },
         },
         lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
           settings = {
             Lua = {
               completion = {
                 callSnippet = 'Replace',
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
