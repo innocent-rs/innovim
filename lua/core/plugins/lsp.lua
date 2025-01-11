@@ -214,6 +214,7 @@ return {
         'stylua', -- Used to format Lua code
         'ruff',
         'nil',
+        'eslint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
