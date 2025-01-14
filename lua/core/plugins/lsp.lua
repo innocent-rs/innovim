@@ -1,4 +1,3 @@
--- LSP Plugins
 return {
   {
     'folke/lazydev.nvim',
@@ -147,6 +146,7 @@ return {
         'nil',
         'eslint',
         'jsonlint',
+        'prettierd',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -162,4 +162,3 @@ return {
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et
