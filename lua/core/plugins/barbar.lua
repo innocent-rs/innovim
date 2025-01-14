@@ -2,8 +2,8 @@ return {
   {
     'romgrk/barbar.nvim',
     dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+      'lewis6991/gitsigns.nvim',
+      'nvim-tree/nvim-web-devicons',
     },
     init = function()
       vim.g.barbar_auto_setup = false
@@ -31,37 +31,31 @@ return {
           pinned = { button = '📌', filename = true },
         },
       }
-      local map = vim.api.nvim_set_keymap
-      local opts = { noremap = true, silent = true, desc = '' }
-      map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-      map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+      local map = require('internals.utils').map
+      map('<A-,>', '<cmd>BufferPrevious<CR>', 'go to previous buffer')
+      map('<A-.>', '<cmd>BufferNext<CR>', 'go to next buffer')
 
       -- Re-order to previous/next
-      map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-      map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
-
+      map('<A-<>', '<cmd>BufferMovePrevious<CR>', 'move current buffer to previous')
+      map('<A->>', '<cmd>BufferMoveNext<CR>', 'move current buffer to next')
       -- Goto buffer in position...
-      map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-      map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-      map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-      map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-      map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-      map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-      map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-      map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-      map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
-      map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+      map('<A-1>', '<cmd>BufferGoto 1<CR>', 'go to buffer 1')
+      map('<A-2>', '<cmd>BufferGoto 2<CR>', 'go to buffer 2')
+      map('<A-3>', '<cmd>BufferGoto 3<CR>', 'go to buffer 3')
+      map('<A-4>', '<cmd>BufferGoto 4<CR>', 'go to buffer 4')
+      map('<A-5>', '<cmd>BufferGoto 5<CR>', 'go to buffer 5')
+      map('<A-6>', '<cmd>BufferGoto 6<CR>', 'go to buffer 6')
+      map('<A-7>', '<cmd>BufferGoto 7<CR>', 'go to buffer 7')
+      map('<A-8>', '<cmd>BufferGoto 8<CR>', 'go to buffer 8')
+      map('<A-9>', '<cmd>BufferGoto 9<CR>', 'go to buffer 9')
+      map('<A-0>', '<cmd>BufferLast<CR>', 'go to last buffer')
 
-      -- Pin/unpin buffer
-      map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
-
+      map('<A-p>', '<cmd>BufferPin<CR>', 'pin or unpin buffer')
       -- Goto pinned/unpinned buffer
       --                 :BufferGotoPinned
       --                 :BufferGotoUnpinned
 
-      -- Close buffer
-      map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
-
+      map('<A-c>', '<cmd>BufferClose<CR>', 'close buffer')
       -- Wipeout buffer
       --                 :BufferWipeout
 
@@ -72,16 +66,14 @@ return {
       --                 :BufferCloseBuffersLeft
       --                 :BufferCloseBuffersRight
 
-      -- Magic buffer-picking mode
-      map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
-      map('n', '<C-s-p>', '<Cmd>BufferPickDelete<CR>', opts)
+      map('<C-p>', '<cmd>BufferPick<CR>', 'magic buffer-picking mode')
+      map('<C-s-p>', '<cmd>BufferPickDelete<CR>', 'magic buffer picking mode delete')
 
-      -- Sort automatically by...
-      map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
-      map('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', opts)
-      map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
-      map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
-      map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+      -- map('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', opts)
+      -- map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
+      -- map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
+      -- map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+      map('<leader>bb', '<cmd>BufferOrderByBufferNumber<CR>', 'order by buffer bumber')
     end,
   },
 }
