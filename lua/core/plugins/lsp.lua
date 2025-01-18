@@ -119,6 +119,9 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
+        pyright = {
+          filetypes = { 'python' },
+        },
         ruff = {
           filetypes = { 'python' },
         },
@@ -147,6 +150,7 @@ return {
         'eslint',
         'jsonlint',
         'prettierd',
+        'pyright',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
