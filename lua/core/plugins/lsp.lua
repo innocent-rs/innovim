@@ -141,6 +141,8 @@ return {
             },
           },
         },
+        rust_analyzer = {},
+        tailwindcss = {},
       }
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
@@ -150,7 +152,6 @@ return {
         'eslint',
         'jsonlint',
         'prettierd',
-        'pyright',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
