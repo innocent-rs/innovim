@@ -143,6 +143,7 @@ return {
         },
         rust_analyzer = {},
         tailwindcss = {},
+        emmet_language_server = {},
       }
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
