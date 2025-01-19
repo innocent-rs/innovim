@@ -9,5 +9,6 @@ return {
       -- refer to the configuration section below
     },
     profiler = {},
+    dim = {},
   },
 }
