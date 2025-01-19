@@ -25,6 +25,7 @@ return {
           close = '\\',
         },
       }
+      require('mini.comment').setup {}
     end,
   },
 }
