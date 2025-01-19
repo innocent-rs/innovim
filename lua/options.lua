@@ -4,7 +4,7 @@ g.mapleader = ' '
 g.maplocalleader = ' '
 
 opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 opt.mouse = 'a'
 opt.showmode = false

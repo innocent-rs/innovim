@@ -20,6 +20,11 @@ return {
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+      require('mini.files').setup {
+        mappings = {
+          close = '\\',
+        },
+      }
     end,
   },
 }

@@ -80,6 +80,7 @@ return {
               luasnip.jump(-1)
             end
           end, { 'i', 's' }),
+          ['C-e'] = cmp.mapping.close(),
         },
         sources = {
           {

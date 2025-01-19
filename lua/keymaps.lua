@@ -25,3 +25,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- mini
+map('\\', ':lua MiniFiles.open()<CR>', 'open mini.files')
