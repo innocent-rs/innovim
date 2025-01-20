@@ -10,6 +10,7 @@ return {
       lint.linters_by_ft = lint.linters_by_ft or {}
       lint.linters_by_ft['markdown'] = { 'markdownlint' }
       lint.linters_by_ft['python'] = { 'ruff' }
+      lint.linters_by_ft['json'] = { 'jsonlint' }
 
       lint.linters_by_ft['clojure'] = nil
       lint.linters_by_ft['dockerfile'] = nil
@@ -19,7 +20,6 @@ return {
       lint.linters_by_ft['ruby'] = nil
       lint.linters_by_ft['terraform'] = nil
       lint.linters_by_ft['text'] = nil
-      -- lint.linters_by_ft['json'] = nil --jsonlint
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
       vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
         group = lint_augroup,

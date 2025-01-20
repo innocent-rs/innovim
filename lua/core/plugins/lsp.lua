@@ -119,18 +119,7 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
-        pyright = {
-          filetypes = { 'python' },
-        },
-        ruff = {
-          filetypes = { 'python' },
-        },
-        ts_ls = {},
-        cssls = {},
-        html = {},
-        nil_ls = {
-          filetypes = { 'nix' },
-        },
+        -- lua
         lua_ls = {
           settings = {
             Lua = {
@@ -141,13 +130,31 @@ return {
             },
           },
         },
-        rust_analyzer = {},
+        -- python
+        pyright = {
+          filetypes = { 'python' },
+        },
+        ruff = {
+          filetypes = { 'python' },
+        },
+        -- web
+        html = {},
+        cssls = {},
         tailwindcss = {},
         emmet_language_server = {},
+        ts_ls = {},
+        -- rust
+        rust_analyzer = {},
+        -- nil (nix files)
+        nil_ls = {
+          filetypes = { 'nix' },
+        },
+        vimls = {},
       }
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'markdownlint',
         'ruff',
         'nil',
         'eslint',
