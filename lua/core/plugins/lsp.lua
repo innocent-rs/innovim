@@ -118,49 +118,57 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      local servers = {
-        -- lua
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
-        -- python
-        pyright = {
-          filetypes = { 'python' },
-        },
-        ruff = {
-          filetypes = { 'python' },
-        },
-        -- web
-        html = {},
-        cssls = {},
-        tailwindcss = {},
-        emmet_language_server = {},
-        ts_ls = {},
-        -- rust
-        rust_analyzer = {},
-        -- nil (nix files)
-        nil_ls = {
-          filetypes = { 'nix' },
-        },
-        vimls = {},
-      }
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-        'markdownlint',
-        'ruff',
-        'nil',
-        'eslint',
-        'jsonlint',
-        'prettierd',
-      })
+      local servers = {}
+      local langs = require 'langs'
+
+      for _, lang in ipairs(langs.config) do
+        if lang.lsp then
+          for _, lsp in ipairs(lang.lsp) do
+            if type(lsp) == 'string' then
+              servers[lsp] = servers[lsp] or {} -- Initialize an empty table if not already initialized
+              -- servers[lsp].capabilities = vim.tbl_deep_extend('force', servers[lsp].capabilities or {}, capabilities)
+            else
+              for name, lsp_config in pairs(lsp) do
+                servers[name] = servers[name] or {} -- Initialize an empty table if not already initialized
+                -- Merge the custom config for this LSP
+                servers[name] = vim.tbl_deep_extend('force', servers[name], lsp_config)
+                -- servers[name].capabilities = vim.tbl_deep_extend('force', servers[name].capabilities or {}, capabilities)
+              end
+            end
+          end
+        end
+      end
+
+      local ensure_installed_set = {}
+
+      for _, lang in ipairs(langs.config) do
+        if lang.lsp then
+          for _, lsp in ipairs(lang.lsp) do
+            if type(lsp) == 'string' then
+              ensure_installed_set[lsp] = true
+            else
+              for name in pairs(lsp) do
+                ensure_installed_set[name] = true
+              end
+            end
+          end
+        end
+
+        if lang.linter then
+          for _, linter in ipairs(lang.linter) do
+            ensure_installed_set[linter] = true
+          end
+        end
+
+        if lang.formatter then
+          for _, formatter in ipairs(lang.formatter) do
+            ensure_installed_set[formatter] = true
+          end
+        end
+      end
+
+      local ensure_installed = vim.tbl_keys(ensure_installed_set)
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
