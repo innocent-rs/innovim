@@ -121,7 +121,7 @@ return {
       local servers = {}
       local langs = require 'langs'
 
-      for _, lang in ipairs(langs.config) do
+      for _, lang in ipairs(langs) do
         if lang.lsp then
           for _, lsp in ipairs(lang.lsp) do
             if type(lsp) == 'string' then
@@ -141,7 +141,7 @@ return {
 
       local ensure_installed_set = {}
 
-      for _, lang in ipairs(langs.config) do
+      for _, lang in ipairs(langs) do
         if lang.lsp then
           for _, lsp in ipairs(lang.lsp) do
             if type(lsp) == 'string' then

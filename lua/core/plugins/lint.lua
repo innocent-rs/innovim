@@ -10,9 +10,6 @@ return {
       local langs = require 'langs'
 
       lint.linters_by_ft = lint.linters_by_ft or {}
-      -- lint.linters_by_ft['markdown'] = { 'markdownlint' }
-      -- lint.linters_by_ft['python'] = { 'ruff' }
-      -- lint.linters_by_ft['json'] = { 'jsonlint' }
 
       lint.linters_by_ft['clojure'] = nil
       lint.linters_by_ft['dockerfile'] = nil
@@ -23,7 +20,7 @@ return {
       lint.linters_by_ft['terraform'] = nil
       lint.linters_by_ft['text'] = nil
 
-      for _, config in ipairs(langs.config) do
+      for _, config in ipairs(langs) do
         if config.linter then
           for _, linter in ipairs(config.linter) do
             for _, ft in ipairs(config.ft) do

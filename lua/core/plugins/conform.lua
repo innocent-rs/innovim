@@ -28,16 +28,7 @@ return {
           lsp_format = lsp_format_opt,
         }
       end,
-      -- formatters_by_ft = {
-      --   lua = { 'stylua' },
-      --   -- Conform can also run multiple formatters sequentially
-      --   -- python = { "isort", "black" },
-      --   --
-      --   -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { 'prettierd' },
-      -- typescript = { 'prettierd' },
-      -- },
-      formatters_by_ft = require('langs').formatters_by_ft,
+      formatters_by_ft = require('langs').get_formatters(),
     },
   },
 }
